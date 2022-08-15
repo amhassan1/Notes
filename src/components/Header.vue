@@ -2,7 +2,7 @@
     <div class="nav">
         <div class="nav-left">
             <ul class="arima">
-                <li>
+                <li class="shrikhand">
                     <router-link to="/"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"

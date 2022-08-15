@@ -37,4 +37,8 @@
     .edu {
         font-family: "Edu QLD Beginner", cursive;
     }
+
+    .shrikhand {
+        font-family: "Shrikhand", cursive;
+    }
 </style>
