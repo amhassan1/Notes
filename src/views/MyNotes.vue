@@ -51,7 +51,7 @@
 
     @media screen and (max-width: 480px) {
         .myNotes {
-            grid-template-columns: 350px;
+            grid-template-columns: 300px;
             justify-content: center;
         }
 

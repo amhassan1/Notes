@@ -88,6 +88,9 @@
             font-size: 1rem;
         }
 
+        .nav {
+            padding: 0.4rem;
+        }
         .nav-left {
             width: 100%;
         }

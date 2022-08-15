@@ -16,7 +16,7 @@
                 </button>
             </div>
 
-            <v-menu v-model="menu" :close-on-content-click="false">
+            <v-menu v-model="menu" :close-on-content-click="false" location="start">
                 <template v-slot:activator="{ props }">
                     <button class="button" v-bind="props"><v-icon size="x-small">mdi-dots-vertical</v-icon></button>
                 </template>
