@@ -23,16 +23,16 @@ const routes = [
         name: "myNotes",
         component: MyNotes,
     },
-    {
-        path: "/login",
-        name: "login",
-        component: Login,
-    },
-    {
-        path: "/signup",
-        name: "signup",
-        component: SignUp,
-    },
+    // {
+    //     path: "/login",
+    //     name: "login",
+    //     component: Login,
+    // },
+    // {
+    //     path: "/signup",
+    //     name: "signup",
+    //     component: SignUp,
+    // },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: () => import("../views/NotFound.vue") },
 ];
 
