@@ -48,4 +48,15 @@
         position: sticky;
         top: 30px;
     }
+
+    @media screen and (max-width: 480px) {
+        .myNotes {
+            grid-template-columns: 350px;
+            justify-content: center;
+        }
+
+        .sticky {
+            position: relative;
+        }
+    }
 </style>

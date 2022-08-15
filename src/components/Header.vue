@@ -82,4 +82,18 @@
     .nav-right {
         justify-content: flex-end;
     }
+
+    @media screen and (max-width: 900px) {
+        a {
+            font-size: 1rem;
+        }
+
+        .nav-left {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: none;
+        }
+    }
 </style>
