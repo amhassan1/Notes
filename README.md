@@ -18,6 +18,12 @@ npm run serve
 npm run build
 ```
 
+### Build And Deploy to github pages
+
+```
+npm run deploy
+```
+
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
