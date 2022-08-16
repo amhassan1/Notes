@@ -20,7 +20,7 @@
                 <template v-slot:activator="{ props }">
                     <button class="button" v-bind="props"><v-icon size="x-small">mdi-dots-vertical</v-icon></button>
                 </template>
-                <v-card max-width="300">
+                <v-card :max-width="cardMaxWidth">
                     <v-card-title><v-icon size="small">mdi-pencil</v-icon>&nbsp;Edit</v-card-title>
                     <v-card-content>
                         <v-select
@@ -92,6 +92,8 @@
                 initCategory: "",
                 initColor: "",
                 initBackgroundColor: "",
+                cardMaxWidth: 300,
+                noteMinWidth: 300,
             };
         },
         methods: {
@@ -135,7 +137,7 @@
                 const noteDiv = this.$refs.noteDiv;
                 let longestLineLength = this.lengthOfLongestLine(this.note.text);
                 let wantedWidth = longestLineLength > 60 ? 60 : longestLineLength;
-                noteDiv.style.width = longestLineLength > 35 ? wantedWidth + "ch" : "35ch";
+                noteDiv.style.width = longestLineLength > 35 ? wantedWidth + "ch" : this.noteMinWidth + "px";
             },
             lengthOfLongestLine(paragraph) {
                 let longestLineLength = 0;
@@ -152,6 +154,15 @@
                     }
                 }
                 return longestLineLength;
+            },
+            media() {
+                if (window.matchMedia("(max-width: 480px)")) {
+                    this.cardMaxWidth = 200;
+                    this.noteMinWidth = 150;
+                } else {
+                    this.cardMaxWidth = 300;
+                    this.noteMinWidth = 300;
+                }
             },
         },
         computed: {
@@ -173,6 +184,7 @@
             this.initCategory = this.note.catagory;
             this.initColor = this.note.color;
             this.initBackgroundColor = this.note.bg_color;
+            this.media();
         },
     };
 </script>
@@ -182,7 +194,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        min-width: 35ch;
+        min-width: 300px;
         min-height: 250px;
         text-align: left;
         border-radius: 10px;
@@ -191,6 +203,7 @@
         margin: 10px;
         transition: background-color 200ms ease;
     }
+
     .catagory {
         font-size: x-small;
         margin: 0px;
@@ -225,7 +238,31 @@
         color: rgb(101, 101, 255);
     }
 
-    button:hover {
+    .button:hover {
         background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    @media screen and (max-width: 480px) {
+        .note {
+            min-width: 150px;
+            padding: 10px;
+        }
+
+        .catagory {
+            font-size: xx-small;
+        }
+
+        .btns {
+            height: 25px;
+        }
+        .button {
+            height: 20px;
+            width: 20px;
+            margin: 0 4px;
+        }
+
+        .button:hover {
+            background-color: inherit;
+        }
     }
 </style>

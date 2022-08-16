@@ -113,14 +113,22 @@
     #noteTextInput {
         width: 100%;
     }
+
     .form-list-item {
         width: 50%;
         min-width: 200px;
     }
 
+    @media screen and (max-width: 480px) {
+        .form-list-item {
+            min-width: 80%;
+        }
+    }
+
     .form-list-item label {
         color: #a0a0a0;
     }
+
     #add {
         display: block;
         width: 100%;

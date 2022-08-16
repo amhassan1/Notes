@@ -21,4 +21,12 @@
         border-radius: 3px;
         border: 1px solid black;
     }
+
+    @media screen and (max-width: 480px) {
+        .colorPicker {
+            min-width: 16px;
+            min-height: 16px;
+            border-radius: 3px;
+        }
+    }
 </style>

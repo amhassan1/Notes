@@ -48,6 +48,12 @@
         border-radius: 0.8em;
     }
 
+    @media screen and (max-width: 480px) {
+        .notes {
+            padding: 10px;
+        }
+    }
+
     /* .slide-enter-from {
         transform: translateX(200px);
         opacity: 0;

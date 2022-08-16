@@ -93,6 +93,7 @@
         }
         .nav-left {
             width: 100%;
+            justify-content: space-around;
         }
 
         .nav-right {

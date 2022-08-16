@@ -34,13 +34,20 @@
         justify-content: center;
         align-items: center;
         flex-direction: row;
-        min-width: 35ch;
+        min-width: 300px;
         min-height: 250px;
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
         padding: 20px;
         margin: 10px;
         background-color: #eeeeee;
+    }
+
+    @media screen and (max-width: 480px) {
+        .note {
+            min-width: 150px;
+            min-height: 150px;
+        }
     }
 
     .btn {

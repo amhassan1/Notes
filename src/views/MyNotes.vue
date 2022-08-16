@@ -14,7 +14,6 @@
     import NotesHeader from "@/components/NotesHeader";
     import NotesPage from "@/components/NotesPage";
     import NoteSort from "@/components/NoteSort";
-    import { API } from "@/uri";
     import { mapGetters } from "vuex";
 
     export default {
@@ -51,7 +50,7 @@
 
     @media screen and (max-width: 480px) {
         .myNotes {
-            grid-template-columns: 300px;
+            grid-template-columns: 95vw;
             justify-content: center;
         }
 
