@@ -1,6 +1,6 @@
 <template>
     <div class="home arima">
-        <h1>Notes</h1>
+        <h1 class="text-align-center">Notes</h1>
         <h2 class="text-align-center">Welcome {{ user.firstName }} {{ user.lastName }}</h2>
         <h3 class="text-align-center">Create Notes Quickly and Easily</h3>
         <h4 class="text-align-center">Go to My Notes</h4>
