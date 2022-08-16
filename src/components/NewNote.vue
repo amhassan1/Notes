@@ -8,12 +8,18 @@
 
 <script>
     import { mapGetters } from "vuex";
+    import { emojis } from "@/emojis";
     export default {
+        data() {
+            return {
+                list: emojis,
+            };
+        },
         methods: {
             addNote() {
                 const newNote = {
                     id: this.id,
-                    text: "¯\\_(ツ)_/¯",
+                    text: this.list[Math.floor(Math.random() * this.list.length)],
                     catagory: this.catagory.length > 0 ? this.catagory[0] : "",
                     color: "#000000",
                     bg_color: "#EEEEEE",
