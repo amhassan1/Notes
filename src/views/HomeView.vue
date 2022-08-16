@@ -1,9 +1,7 @@
 <template>
     <div class="home arima">
-        <h1 class="text-align-center">Notes</h1>
-        <h2 class="text-align-center">Welcome {{ user.firstName }} {{ user.lastName }}</h2>
-        <h3 class="text-align-center">Create Notes Quickly and Easily</h3>
-        <h4 class="text-align-center">Go to My Notes</h4>
+        <h3 class="text-align">Create Notes Quickly and Easily</h3>
+        <h4 class="text-align">Go to <router-link to="/notes" class="link">My Notes</router-link></h4>
     </div>
 </template>
 
@@ -36,9 +34,26 @@
 
     .home * {
         padding: 10px 0;
+        font-weight: normal;
     }
 
-    .text-align-center {
-        text-align: center;
+    .text-align {
+        text-align: left;
+    }
+
+    @media screen and (max-width: 480px) {
+        .text-align {
+            text-align: center;
+        }
+    }
+
+    .link {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+
+    .link:hover {
+        text-decoration: underline;
     }
 </style>

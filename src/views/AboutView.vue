@@ -1,6 +1,6 @@
 <template>
-    <div class="about">
-        <h1>About</h1>
+    <div class="about arima">
+        <h1>Notes</h1>
         <h2>By Abdulaziz Hassan</h2>
         <span>Version 0.2.1</span>
     </div>
@@ -10,6 +10,6 @@
     .about {
         margin-top: 2em;
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 </style>
