@@ -1,6 +1,41 @@
 <template>
     <div class="note" ref="noteDiv" :style="{ backgroundColor: note.bg_color }">
-        <p class="catagory arima">{{ note.catagory }}</p>
+        <v-menu v-model="menu" :close-on-content-click="false">
+            <template v-slot:activator="{ props }">
+                <p class="category arima" v-bind="props">{{ note.catagory }}<v-icon>mdi-menu-down</v-icon></p>
+            </template>
+            <v-card :max-width="cardMaxWidth">
+                <v-card-content>
+                    <v-select
+                        :items="catagories"
+                        variant="plain"
+                        label="Category"
+                        v-model="note.catagory"
+                        hide-details
+                    ></v-select>
+                </v-card-content>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        @click="
+                            undoNote();
+                            menu = false;
+                        "
+                        >Cancel</v-btn
+                    >
+
+                    <v-btn
+                        color="primary"
+                        @click="
+                            updateNote();
+                            menu = false;
+                        "
+                        >Save</v-btn
+                    >
+                </v-card-actions>
+            </v-card>
+        </v-menu>
 
         <v-textarea
             class="scrollbar edu"
@@ -30,43 +65,6 @@
                 </button>
             </div>
             <div>
-                <v-menu v-model="menu" :close-on-content-click="false">
-                    <template v-slot:activator="{ props }">
-                        <button class="button" v-bind="props"><v-icon size="x-small">mdi-dots-vertical</v-icon></button>
-                    </template>
-                    <v-card :max-width="cardMaxWidth">
-                        <v-card-content>
-                            <v-select
-                                :items="catagories"
-                                variant="plain"
-                                label="Category"
-                                v-model="note.catagory"
-                                hide-details
-                            ></v-select>
-                        </v-card-content>
-
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                                @click="
-                                    undoNote();
-                                    menu = false;
-                                "
-                                >Cancel</v-btn
-                            >
-
-                            <v-btn
-                                color="primary"
-                                @click="
-                                    updateNote();
-                                    menu = false;
-                                "
-                                >Save</v-btn
-                            >
-                        </v-card-actions>
-                    </v-card>
-                </v-menu>
-
                 <v-dialog v-model="dialog">
                     <template v-slot:activator="{ props }">
                         <button class="button" v-bind="props"><v-icon size="small">mdi-arrow-expand</v-icon></button>
@@ -258,10 +256,11 @@
         display: flex;
     }
 
-    .catagory {
+    .category {
         font-size: x-small;
         margin: 0px;
         text-align: right;
+        cursor: pointer;
     }
 
     .btns {
