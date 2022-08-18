@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import MyNotes from "../views/MyNotes.vue";
-import Login from "../views/Login.vue";
-import SignUp from "../views/SignUp.vue";
 
 const routes = [
     {
@@ -23,16 +21,6 @@ const routes = [
         name: "myNotes",
         component: MyNotes,
     },
-    // {
-    //     path: "/login",
-    //     name: "login",
-    //     component: Login,
-    // },
-    // {
-    //     path: "/signup",
-    //     name: "signup",
-    //     component: SignUp,
-    // },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: () => import("../views/NotFound.vue") },
 ];
 
