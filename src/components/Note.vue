@@ -69,12 +69,7 @@
                     <template v-slot:activator="{ props }">
                         <button class="button" v-bind="props"><v-icon size="small">mdi-arrow-expand</v-icon></button>
                     </template>
-                    <v-card
-                        :width="dialogWidth"
-                        :height="dialogHeight"
-                        :style="{ backgroundColor: note.bg_color }"
-                        rounded
-                    >
+                    <v-card :width="dialogWidth" :height="dialogHeight" :style="{ backgroundColor: note.bg_color }">
                         <v-card-content>
                             <div class="colors">
                                 <color-picker
