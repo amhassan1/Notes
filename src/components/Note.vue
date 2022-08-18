@@ -182,27 +182,11 @@
                 this.note.color = this.initColor;
                 this.note.bg_color = this.initBackgroundColor;
             },
-            lengthOfLongestLine(paragraph) {
-                let longestLineLength = 0;
-                let currentLineLength = 0;
-                for (let i = 0; i < paragraph.length; i++) {
-                    if (paragraph[i] !== "\n") {
-                        currentLineLength++;
-                    } else {
-                        currentLineLength = 0;
-                    }
-
-                    if (currentLineLength > longestLineLength) {
-                        longestLineLength = currentLineLength;
-                    }
-                }
-                return longestLineLength;
-            },
             media() {
                 if (window.matchMedia("(max-width: 480px)").matches) {
                     this.cardMaxWidth = 200;
                     this.dialogWidth = 300;
-                    this.dialogHeight = 500;
+                    this.dialogHeight = 600;
                 } else {
                     this.cardMaxWidth = 300;
                     this.dialogWidth = 600;
