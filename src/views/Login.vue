@@ -18,7 +18,6 @@
 </template>
 
 <script>
-    import { API } from "@/uri";
     export default {
         data() {
             return {

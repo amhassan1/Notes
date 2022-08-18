@@ -47,7 +47,6 @@
 </template>
 
 <script>
-    import { API } from "@/uri.js";
     export default {
         data() {
             return {
