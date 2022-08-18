@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import { API } from "@/uri";
 
 export default createStore({
     state: {
