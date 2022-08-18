@@ -1,11 +1,6 @@
 <template>
     <div class="myNotes">
-        <div class="controls">
-            <div class="sticky">
-                <note-sort></note-sort>
-                <notes-header></notes-header>
-            </div>
-        </div>
+        <note-sort></note-sort>
         <notes-page></notes-page>
     </div>
 </template>
@@ -25,7 +20,7 @@
         computed: {
             ...mapGetters({ getUser: "getUser" }),
         },
-        async created() {
+        created() {
             const res = localStorage.getItem("notes");
             let data = res ? JSON.parse(res) : [];
             let id = data.length > 0 ? data[data.length - 1].id + 1 : 0;
@@ -35,27 +30,3 @@
         },
     };
 </script>
-
-<style scoped>
-    .myNotes {
-        display: grid;
-        grid-template-columns: 250px 1fr;
-        column-gap: 40px;
-    }
-
-    .sticky {
-        position: sticky;
-        top: 30px;
-    }
-
-    @media screen and (max-width: 480px) {
-        .myNotes {
-            grid-template-columns: 95vw;
-            justify-content: center;
-        }
-
-        .sticky {
-            position: relative;
-        }
-    }
-</style>
