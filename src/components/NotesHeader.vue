@@ -25,12 +25,10 @@
                 </v-select>
             </li>
             <li class="form-list-item">
-                <label>Font Color</label>
-                <color-picker v-model="note.color" :colors="fontColors"></color-picker>
+                <color-picker v-model="note.color" :colors="fontColors" label="Font Color"></color-picker>
             </li>
             <li class="form-list-item">
-                <label>Note Color</label>
-                <color-picker v-model="note.bg_color" :colors="backgroundColors"></color-picker>
+                <color-picker v-model="note.bg_color" :colors="backgroundColors" label="Note Color"></color-picker>
             </li>
             <li class="form-list-item">
                 <button @click="addNote" id="add"><v-icon>mdi-plus</v-icon>Add Note</button>
@@ -123,10 +121,6 @@
         .form-list-item {
             min-width: 80%;
         }
-    }
-
-    .form-list-item label {
-        color: #a0a0a0;
     }
 
     #add {
