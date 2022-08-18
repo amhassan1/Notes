@@ -3,7 +3,7 @@
         <div class="forms">
             <div class="sticky">
                 <note-sort></note-sort>
-                <notes-header></notes-header>
+                <notes-header class="add-form"></notes-header>
             </div>
         </div>
         <notes-page></notes-page>
@@ -57,6 +57,10 @@
 
         .sticky {
             position: relative;
+        }
+
+        .add-form {
+            display: none;
         }
     }
 </style>
