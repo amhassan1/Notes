@@ -1,12 +1,26 @@
 <template>
     <div class="note" ref="noteDiv" :style="{ backgroundColor: note.bg_color }">
+        <p class="catagory arima">{{ note.catagory }}</p>
+
+        <v-textarea
+            class="scrollbar edu"
+            v-model="note.text"
+            :style="{ color: note.color }"
+            variant="plain"
+            bg-color="inherit"
+            hide-details
+            readonly
+            no-resize
+            auto-grow
+        ></v-textarea>
+
         <div class="btns">
             <div>
                 <button class="button delBtn" @click="delNote">
-                    <v-icon size="small">mdi-close</v-icon>
+                    <v-icon size="small">mdi-delete</v-icon>
                     <v-tooltip activator="parent" location="start">Delete</v-tooltip>
                 </button>
-                <button class="button undoBtn" @click="undoNote">
+                <button class="button undoBtn" @click="undoNote" v-show="edited">
                     <v-icon size="small">mdi-undo</v-icon>
                     <v-tooltip activator="parent">Undo</v-tooltip>
                 </button>
@@ -15,63 +29,105 @@
                     <v-tooltip activator="parent">Save</v-tooltip>
                 </button>
             </div>
+            <div>
+                <v-menu v-model="menu" :close-on-content-click="false">
+                    <template v-slot:activator="{ props }">
+                        <button class="button" v-bind="props"><v-icon size="x-small">mdi-dots-vertical</v-icon></button>
+                    </template>
+                    <v-card :max-width="cardMaxWidth">
+                        <v-card-content>
+                            <v-select
+                                :items="catagories"
+                                variant="plain"
+                                label="Category"
+                                v-model="note.catagory"
+                                hide-details
+                            ></v-select>
+                        </v-card-content>
 
-            <v-menu v-model="menu" :close-on-content-click="false" location="start">
-                <template v-slot:activator="{ props }">
-                    <button class="button" v-bind="props"><v-icon size="x-small">mdi-dots-vertical</v-icon></button>
-                </template>
-                <v-card :max-width="cardMaxWidth">
-                    <v-card-title><v-icon size="small">mdi-pencil</v-icon>&nbsp;Edit</v-card-title>
-                    <v-card-content>
-                        <v-select
-                            :items="catagories"
-                            variant="plain"
-                            label="Category"
-                            v-model="note.catagory"
-                            hide-details
-                        ></v-select>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                @click="
+                                    undoNote();
+                                    menu = false;
+                                "
+                                >Cancel</v-btn
+                            >
 
-                        <v-divider></v-divider>
+                            <v-btn
+                                color="primary"
+                                @click="
+                                    updateNote();
+                                    menu = false;
+                                "
+                                >Save</v-btn
+                            >
+                        </v-card-actions>
+                    </v-card>
+                </v-menu>
 
-                        <color-picker v-model="note.color" :colors="fontColors"></color-picker>
+                <v-dialog v-model="dialog">
+                    <template v-slot:activator="{ props }">
+                        <button class="button" v-bind="props"><v-icon size="small">mdi-arrow-expand</v-icon></button>
+                    </template>
+                    <v-card
+                        :width="dialogWidth"
+                        :height="dialogHeight"
+                        :style="{ backgroundColor: note.bg_color }"
+                        rounded
+                    >
+                        <v-card-content>
+                            <div class="colors">
+                                <color-picker
+                                    v-model="note.color"
+                                    :colors="fontColors"
+                                    label="Font Color"
+                                ></color-picker>
 
-                        <v-divider></v-divider>
+                                <v-divider vertical></v-divider>
 
-                        <color-picker v-model="note.bg_color" :colors="backgroundColors"></color-picker>
-                    </v-card-content>
+                                <color-picker
+                                    v-model="note.bg_color"
+                                    :colors="backgroundColors"
+                                    label="Note Color"
+                                ></color-picker>
+                            </div>
 
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            @click="
-                                undoNote();
-                                menu = false;
-                            "
-                            >Cancel</v-btn
-                        >
+                            <v-divider></v-divider>
 
-                        <v-btn
-                            color="primary"
-                            @click="
-                                updateNote();
-                                menu = false;
-                            "
-                            >Save</v-btn
-                        >
-                    </v-card-actions>
-                </v-card>
-            </v-menu>
+                            <v-textarea
+                                class="edu"
+                                v-model="note.text"
+                                auto-grow
+                                variant="plain"
+                                :style="{ color: note.color }"
+                            >
+                            </v-textarea>
+                        </v-card-content>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                @click="
+                                    undoNote();
+                                    dialog = false;
+                                "
+                                >Cancel</v-btn
+                            >
+
+                            <v-btn
+                                color="primary"
+                                @click="
+                                    updateNote();
+                                    dialog = false;
+                                "
+                                >Save</v-btn
+                            >
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </div>
         </div>
-        <v-textarea
-            class="edu"
-            v-model="note.text"
-            :style="{ color: note.color }"
-            auto-grow
-            variant="plain"
-            bg-color="inherit"
-            hide-details
-        ></v-textarea>
-        <p class="catagory arima">{{ note.catagory }}</p>
     </div>
 </template>
 
@@ -87,13 +143,15 @@
         },
         data() {
             return {
+                dialog: false,
                 menu: false,
                 initText: "",
                 initCategory: "",
                 initColor: "",
                 initBackgroundColor: "",
                 cardMaxWidth: 300,
-                noteMinWidth: 300,
+                dialogWidth: 600,
+                dialogHeight: 700,
             };
         },
         methods: {
@@ -121,7 +179,6 @@
                         this.$store.dispatch("deleteNote", this.note.id);
                     } else {
                         this.$store.dispatch("updateNote", updtNote);
-                        this.adjustWidth();
                     }
                 } else {
                     this.note.text = this.initText;
@@ -132,12 +189,6 @@
                 this.note.catagory = this.initCategory;
                 this.note.color = this.initColor;
                 this.note.bg_color = this.initBackgroundColor;
-            },
-            adjustWidth() {
-                const noteDiv = this.$refs.noteDiv;
-                let longestLineLength = this.lengthOfLongestLine(this.note.text);
-                let wantedWidth = longestLineLength > 60 ? 60 : longestLineLength;
-                noteDiv.style.width = longestLineLength > 35 ? wantedWidth + "ch" : this.noteMinWidth + "px";
             },
             lengthOfLongestLine(paragraph) {
                 let longestLineLength = 0;
@@ -156,12 +207,14 @@
                 return longestLineLength;
             },
             media() {
-                if (window.matchMedia("(max-width: 480px)")) {
+                if (window.matchMedia("(max-width: 480px)").matches) {
                     this.cardMaxWidth = 200;
-                    this.noteMinWidth = 150;
+                    this.dialogWidth = 300;
+                    this.dialogHeight = 500;
                 } else {
                     this.cardMaxWidth = 300;
-                    this.noteMinWidth = 300;
+                    this.dialogWidth = 600;
+                    this.dialogHeight = 700;
                 }
             },
         },
@@ -175,9 +228,6 @@
             edited() {
                 return this.note.text !== this.initText;
             },
-        },
-        mounted() {
-            this.adjustWidth();
         },
         created() {
             this.initText = this.note.text;
@@ -194,14 +244,18 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        min-width: 300px;
-        min-height: 250px;
+        width: 300px;
+        height: 250px;
         text-align: left;
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
         padding: 20px;
         margin: 10px;
         transition: background-color 200ms ease;
+    }
+
+    .colors {
+        display: flex;
     }
 
     .catagory {
@@ -227,7 +281,7 @@
     }
 
     .delBtn {
-        color: red;
+        color: grey;
     }
 
     .undoBtn {
@@ -244,7 +298,7 @@
 
     @media screen and (max-width: 480px) {
         .note {
-            min-width: 150px;
+            width: 140px;
             padding: 10px;
         }
 
