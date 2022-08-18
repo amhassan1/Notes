@@ -46,7 +46,6 @@
             hide-details
             readonly
             no-resize
-            auto-grow
         ></v-textarea>
 
         <div class="btns">
