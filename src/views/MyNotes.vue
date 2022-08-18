@@ -1,6 +1,11 @@
 <template>
     <div class="myNotes">
-        <note-sort></note-sort>
+        <div class="forms">
+            <div class="sticky">
+                <note-sort></note-sort>
+                <notes-header></notes-header>
+            </div>
+        </div>
         <notes-page></notes-page>
     </div>
 </template>
@@ -16,6 +21,7 @@
             NotesHeader,
             NotesPage,
             NoteSort,
+            NotesHeader,
         },
         computed: {
             ...mapGetters({ getUser: "getUser" }),
@@ -30,3 +36,27 @@
         },
     };
 </script>
+
+<style scoped>
+    .myNotes {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        column-gap: 20px;
+    }
+
+    .sticky {
+        position: sticky;
+        top: 30px;
+    }
+
+    @media screen and (max-width: 480px) {
+        .myNotes {
+            grid-template-columns: 95vw;
+            justify-content: center;
+        }
+
+        .sticky {
+            position: relative;
+        }
+    }
+</style>

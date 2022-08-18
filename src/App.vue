@@ -27,7 +27,6 @@
     .wrap {
         margin: auto;
         width: 90%;
-        max-width: 1200px;
     }
 
     .arima {
