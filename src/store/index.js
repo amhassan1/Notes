@@ -12,7 +12,7 @@ export default createStore({
             firstName: "",
             lastName: "",
         },
-        noteFontColors: ["#000000", "#FF0000", "#00FF00", "#0000FF", "#663611", "#140585", "#FFFFFF"],
+        noteFontColors: ["#000000", "#FF0000", "#00FF00", "#0000FF", "#663611", "#140585", "#FFFFFF", "#00FFFF"],
         noteBackgroundColors: [
             "#EEEEEE",
             "#CDC392",
