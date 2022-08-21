@@ -4,12 +4,12 @@
             <v-select
                 label="Filter By"
                 multiple
-                :items="catagories"
+                :items="categories"
                 v-model="filterList"
                 chips
                 variant="outlined"
                 hide-details
-                @update:model-value="showCatagories"
+                @update:model-value="showCategories"
                 clearable
             >
             </v-select>
@@ -26,11 +26,11 @@
             };
         },
         computed: {
-            ...mapGetters({ catagories: "getCatagories" }),
+            ...mapGetters({ categories: "getCategories" }),
         },
         methods: {
-            showCatagories() {
-                this.$store.commit("setShowCatagories", this.filterList);
+            showCategories() {
+                this.$store.commit("setShowCategories", this.filterList);
             },
         },
     };

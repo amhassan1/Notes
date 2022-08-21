@@ -15,9 +15,9 @@
             </li>
             <li class="form-list-item">
                 <v-select
-                    v-model="note.catagory"
+                    v-model="note.category"
                     variant="underlined"
-                    :items="catagories"
+                    :items="categories"
                     :style="{ width: '100%' }"
                     label="Category"
                     hide-details
@@ -49,7 +49,7 @@
                 note: {
                     title: "",
                     text: "",
-                    catagory: "",
+                    category: "",
                     color: "#000000",
                     bg_color: "#E9FF70",
                 },
@@ -67,7 +67,7 @@
                 this.$store.commit("setId", this.id + 1);
 
                 this.note.text = "";
-                this.note.catagory = "";
+                this.note.category = "";
                 this.note.color = this.fontColors[0];
                 this.note.bg_color = this.backgroundColors[0];
             },
@@ -75,7 +75,7 @@
         computed: {
             ...mapGetters({
                 user: "getUser",
-                catagories: "getCatagories",
+                categories: "getCategories",
                 fontColors: "getNoteFontColors",
                 backgroundColors: "getNoteBackgroundColors",
                 id: "getId",

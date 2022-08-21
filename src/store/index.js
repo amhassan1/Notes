@@ -4,8 +4,8 @@ export default createStore({
     state: {
         id: 0,
         notes: [],
-        catagories: ["Important", "Urgent", "School", "Family", "Friends", "House"],
-        showCatagories: [],
+        categories: ["Important", "Urgent", "School", "Family", "Friends", "House"],
+        showCategories: [],
         user: {
             id: 0,
             username: "guest",
@@ -36,11 +36,11 @@ export default createStore({
         getNotes(state) {
             return state.notes;
         },
-        getCatagories(state) {
-            return state.catagories;
+        getCategories(state) {
+            return state.categories;
         },
         getShow(state) {
-            return state.showCatagories;
+            return state.showCategories;
         },
         getUser(state) {
             return state.user;
@@ -68,8 +68,8 @@ export default createStore({
         updateNote(state, note) {
             state.notes = state.notes.map((n) => (n.id === note.id ? note : n));
         },
-        setShowCatagories(state, catagories) {
-            state.showCatagories = catagories;
+        setShowCategories(state, categories) {
+            state.showCategories = categories;
         },
         setUser(state, user) {
             state.user = user;

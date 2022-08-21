@@ -19,14 +19,14 @@
             notes() {
                 return this.$store.getters.getNotes;
             },
-            showCatagories() {
+            showCategories() {
                 return this.$store.getters.getShow;
             },
             notesToShow() {
-                let show = this.showCatagories;
+                let show = this.showCategories;
                 let notes = this.notes;
                 if (show.length > 0) {
-                    notes = notes.filter((note) => show.includes(note.catagory));
+                    notes = notes.filter((note) => show.includes(note.category));
                 }
                 return notes;
             },

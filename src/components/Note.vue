@@ -3,17 +3,17 @@
         <v-menu v-model="menu" :close-on-content-click="false">
             <template v-slot:activator="{ props }">
                 <p class="category arima" v-bind="props">
-                    {{ note.catagory }} <span v-show="note.catagory === ''" class="font-weight-bold">Category</span
+                    {{ note.category }} <span v-show="note.category === ''" class="font-weight-bold">Category</span
                     ><v-icon>mdi-menu-down</v-icon>
                 </p>
             </template>
             <v-card :max-width="cardMaxWidth">
                 <v-card-content>
                     <v-select
-                        :items="catagories"
+                        :items="categories"
                         variant="plain"
                         label="Category"
-                        v-model="note.catagory"
+                        v-model="note.category"
                         hide-details
                     ></v-select>
                 </v-card-content>
@@ -182,13 +182,13 @@
                         id: this.note.id,
                         title: this.note.title,
                         text: this.note.text,
-                        catagory: this.note.catagory,
+                        category: this.note.category,
                         color: this.note.color,
                         bg_color: this.note.bg_color,
                     };
                     this.initTitle = this.note.title;
                     this.initText = this.note.text;
-                    this.initCategory = this.note.catagory;
+                    this.initCategory = this.note.category;
                     this.initColor = this.note.color;
                     this.initBackgroundColor = this.note.bg_color;
 
@@ -204,7 +204,7 @@
             undoNote() {
                 this.note.title = this.initTitle;
                 this.note.text = this.initText;
-                this.note.catagory = this.initCategory;
+                this.note.category = this.initCategory;
                 this.note.color = this.initColor;
                 this.note.bg_color = this.initBackgroundColor;
             },
@@ -223,7 +223,7 @@
         computed: {
             ...mapGetters({
                 user: "getUser",
-                catagories: "getCatagories",
+                categories: "getCategories",
                 fontColors: "getNoteFontColors",
                 backgroundColors: "getNoteBackgroundColors",
             }),
@@ -234,7 +234,7 @@
         created() {
             this.initTitle = this.note.title;
             this.initText = this.note.text;
-            this.initCategory = this.note.catagory;
+            this.initCategory = this.note.category;
             this.initColor = this.note.color;
             this.initBackgroundColor = this.note.bg_color;
             this.media();
@@ -306,7 +306,7 @@
             padding: 10px;
         }
 
-        .catagory {
+        .category {
             font-size: xx-small;
         }
 
