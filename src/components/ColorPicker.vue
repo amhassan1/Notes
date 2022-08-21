@@ -16,7 +16,7 @@
 
 <style scoped>
     .colorPicker {
-        padding-left: 5px;
+        padding: 0 5px;
     }
     .color {
         width: 25px;
