@@ -19,6 +19,7 @@
             addNote() {
                 const newNote = {
                     id: this.id,
+                    title: "",
                     text: this.list[Math.floor(Math.random() * this.list.length)],
                     catagory: this.catagory.length > 0 ? this.catagory[0] : "",
                     color: "#000000",

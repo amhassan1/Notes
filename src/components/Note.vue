@@ -37,8 +37,18 @@
             </v-card>
         </v-menu>
 
+        <v-text-field
+            class="font-weight-bold"
+            variant="plain"
+            v-model="note.title"
+            hide-details
+            :style="{ color: note.color }"
+            readonly
+            v-show="note.title !== ''"
+        ></v-text-field>
+
         <v-textarea
-            class="scrollbar edu"
+            class="edu"
             v-model="note.text"
             :style="{ color: note.color }"
             variant="plain"
@@ -88,10 +98,20 @@
 
                             <v-divider></v-divider>
 
+                            <v-text-field
+                                class="font-weight-bold"
+                                variant="plain"
+                                v-model="note.title"
+                                hide-details
+                                placeholder="Title"
+                                :style="{ color: note.color }"
+                            ></v-text-field>
+
                             <v-textarea
                                 class="edu"
                                 v-model="note.text"
                                 auto-grow
+                                hide-details
                                 variant="plain"
                                 :style="{ color: note.color }"
                             >
@@ -137,6 +157,7 @@
             return {
                 dialog: false,
                 menu: false,
+                initTitle: "",
                 initText: "",
                 initCategory: "",
                 initColor: "",
@@ -156,12 +177,13 @@
                 if (confirm("Are you sure you want to update note?")) {
                     const updtNote = {
                         id: this.note.id,
+                        title: this.note.title,
                         text: this.note.text,
                         catagory: this.note.catagory,
                         color: this.note.color,
                         bg_color: this.note.bg_color,
                     };
-
+                    this.initTitle = this.note.title;
                     this.initText = this.note.text;
                     this.initCategory = this.note.catagory;
                     this.initColor = this.note.color;
@@ -177,6 +199,7 @@
                 }
             },
             undoNote() {
+                this.note.title = this.initTitle;
                 this.note.text = this.initText;
                 this.note.catagory = this.initCategory;
                 this.note.color = this.initColor;
@@ -202,10 +225,11 @@
                 backgroundColors: "getNoteBackgroundColors",
             }),
             edited() {
-                return this.note.text !== this.initText;
+                return this.note.text !== this.initText || this.note.title !== this.initTitle;
             },
         },
         created() {
+            this.initTitle = this.note.title;
             this.initText = this.note.text;
             this.initCategory = this.note.catagory;
             this.initColor = this.note.color;
@@ -221,7 +245,7 @@
         justify-content: space-between;
         flex-direction: column;
         width: 300px;
-        height: 250px;
+        height: 300px;
         text-align: left;
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);

@@ -47,6 +47,7 @@
         data() {
             return {
                 note: {
+                    title: "",
                     text: "",
                     catagory: "",
                     color: "#000000",
