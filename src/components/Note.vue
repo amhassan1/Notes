@@ -40,15 +40,7 @@
             </v-card>
         </v-menu>
 
-        <v-text-field
-            class="font-weight-bold"
-            variant="plain"
-            v-model="note.title"
-            hide-details
-            :style="{ color: note.color }"
-            readonly
-            v-show="note.title !== ''"
-        ></v-text-field>
+        <h3 class="edu" :style="{ color: note.color }" v-show="note.title !== ''">{{ note.title }}</h3>
 
         <v-textarea
             class="edu"
