@@ -2,7 +2,10 @@
     <div class="note" ref="noteDiv" :style="{ backgroundColor: note.bg_color }">
         <v-menu v-model="menu" :close-on-content-click="false">
             <template v-slot:activator="{ props }">
-                <p class="category arima" v-bind="props">{{ note.catagory }}<v-icon>mdi-menu-down</v-icon></p>
+                <p class="category arima" v-bind="props">
+                    {{ note.catagory }} <span v-show="note.catagory === ''" class="font-weight-bold">Category</span
+                    ><v-icon>mdi-menu-down</v-icon>
+                </p>
             </template>
             <v-card :max-width="cardMaxWidth">
                 <v-card-content>
