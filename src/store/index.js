@@ -68,6 +68,12 @@ export default createStore({
         updateNote(state, note) {
             state.notes = state.notes.map((n) => (n.id === note.id ? note : n));
         },
+        initCategories(state, categories) {
+            state.categories.push(...categories);
+        },
+        addCategory(state, category) {
+            state.categories.push(category);
+        },
         setShowCategories(state, categories) {
             state.showCategories = categories;
         },
@@ -83,7 +89,7 @@ export default createStore({
         initNotes({ commit }, notes) {
             commit("setNotes", notes);
         },
-        async addNote({ commit }, note) {
+        addNote({ commit }, note) {
             let notesJson = localStorage.getItem("notes");
             let notes = notesJson ? JSON.parse(notesJson) : [];
 
@@ -93,7 +99,7 @@ export default createStore({
 
             commit("addNote", note);
         },
-        async deleteNote({ commit }, id) {
+        deleteNote({ commit }, id) {
             let notesJson = localStorage.getItem("notes");
             let notes = JSON.parse(notesJson);
 
@@ -104,7 +110,7 @@ export default createStore({
             commit("deleteNote", id);
             commit("setId", notes.length > 0 ? notes[notes.length - 1].id + 1 : 0);
         },
-        async updateNote({ commit }, note) {
+        updateNote({ commit }, note) {
             let notesJson = localStorage.getItem("notes");
             let notes = JSON.parse(notesJson);
 
@@ -116,6 +122,16 @@ export default createStore({
         },
         addUser({ commit }, user) {
             commit("setUser", user);
+        },
+        addCategory({ commit }, category) {
+            let categoriesJson = localStorage.getItem("categories");
+            let categories = categoriesJson ? JSON.parse(categoriesJson) : [];
+
+            categories.push(category);
+
+            localStorage.setItem("categories", JSON.stringify(categories));
+
+            commit("addCategory", category);
         },
     },
     modules: {},

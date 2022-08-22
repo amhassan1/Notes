@@ -8,35 +8,26 @@
                 </p>
             </template>
             <v-card :max-width="cardMaxWidth">
-                <v-card-content>
-                    <v-select
-                        :items="categories"
-                        variant="plain"
-                        label="Category"
-                        v-model="note.category"
-                        hide-details
-                    ></v-select>
-                </v-card-content>
-
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        @click="
-                            undoNote();
-                            menu = false;
-                        "
-                        >Cancel</v-btn
-                    >
-
-                    <v-btn
-                        color="primary"
-                        @click="
-                            updateNote();
-                            menu = false;
-                        "
-                        >Save</v-btn
-                    >
-                </v-card-actions>
+                <v-list>
+                    <v-list-item v-for="category in categories" :value="category" @click="select(category)">{{
+                        category
+                    }}</v-list-item>
+                    <v-list-item-action>
+                        <v-spacer v-if="!showField"></v-spacer>
+                        <v-btn v-if="!showField" icon="mdi-plus" variant="plain" @click="showField = true"></v-btn>
+                        <v-text-field
+                            v-else
+                            autofocus
+                            density="compact"
+                            placeholder="Add Category"
+                            hide-details
+                            variant="outlined"
+                            @keyup.enter="addCategory"
+                            @blur="showField = false"
+                        ></v-text-field>
+                        <v-spacer v-if="!showField"></v-spacer>
+                    </v-list-item-action>
+                </v-list>
             </v-card>
         </v-menu>
 
@@ -152,17 +143,28 @@
             return {
                 dialog: false,
                 menu: false,
+                showField: false,
                 initTitle: "",
                 initText: "",
                 initCategory: "",
                 initColor: "",
                 initBackgroundColor: "",
-                cardMaxWidth: 300,
+                cardMaxWidth: 200,
                 dialogWidth: 600,
                 dialogHeight: 700,
             };
         },
         methods: {
+            addCategory(e) {
+                e.preventDefault();
+                this.showField = false;
+                if (e.target.value !== "") {
+                    this.$store.dispatch("addCategory", e.target.value);
+                }
+            },
+            select(category) {
+                this.note.category = category;
+            },
             delNote() {
                 if (confirm("Are you sure you want to delete note?")) {
                     this.$store.dispatch("deleteNote", this.note.id);
@@ -202,11 +204,9 @@
             },
             media() {
                 if (window.matchMedia("(max-width: 480px)").matches) {
-                    this.cardMaxWidth = 200;
                     this.dialogWidth = 300;
                     this.dialogHeight = 600;
                 } else {
-                    this.cardMaxWidth = 300;
                     this.dialogWidth = 600;
                     this.dialogHeight = 700;
                 }
@@ -220,7 +220,11 @@
                 backgroundColors: "getNoteBackgroundColors",
             }),
             edited() {
-                return this.note.text !== this.initText || this.note.title !== this.initTitle;
+                return (
+                    this.note.text !== this.initText ||
+                    this.note.title !== this.initTitle ||
+                    this.note.category !== this.initCategory
+                );
             },
         },
         created() {
