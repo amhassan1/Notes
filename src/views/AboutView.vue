@@ -2,7 +2,7 @@
     <div class="about arima">
         <h1>Notes</h1>
         <h2>By Abdulaziz Hassan</h2>
-        <span>Version 0.3.1</span>
+        <span>Version 0.3.2</span>
     </div>
 </template>
 
