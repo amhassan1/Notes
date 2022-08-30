@@ -67,7 +67,7 @@
                     <v-card :width="dialogWidth" :height="dialogHeight" :style="{ backgroundColor: note.bg_color }">
                         <v-card-content>
                             <div class="colors">
-                                <v-menu v-model="fontColorMenu">
+                                <v-menu v-model="fontColorMenu" :close-on-content-click="false">
                                     <template v-slot:activator="{ props }">
                                         <v-btn class="colorBtns" icon v-bind="props" :color="note.color" elevation="0">
                                             <v-icon :color="note.color === '#000000' ? '#FFFFFF' : '#000000'"
@@ -84,7 +84,7 @@
                                     ></v-card>
                                 </v-menu>
 
-                                <v-menu v-model="noteColorMenu">
+                                <v-menu v-model="noteColorMenu" :close-on-content-click="false">
                                     <template v-slot:activator="{ props }">
                                         <v-btn
                                             class="colorBtns"

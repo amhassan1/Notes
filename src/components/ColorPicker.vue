@@ -1,6 +1,6 @@
 <template>
     <v-radio-group v-model="colorValue" inline hide-details :label="label" class="colorPicker">
-        <v-radio v-for="color in colors" :value="color" density="compact"
+        <v-radio v-for="color in colors" :value="color" :color="color" density="compact"
             ><template v-slot:label>
                 <div class="color" :style="{ backgroundColor: color }"></div>
             </template>
