@@ -67,22 +67,43 @@
                     <v-card :width="dialogWidth" :height="dialogHeight" :style="{ backgroundColor: note.bg_color }">
                         <v-card-content>
                             <div class="colors">
-                                <color-picker
-                                    v-model="note.color"
-                                    :colors="fontColors"
-                                    label="Font Color"
-                                ></color-picker>
+                                <v-menu v-model="fontColorMenu">
+                                    <template v-slot:activator="{ props }">
+                                        <v-btn class="colorBtns" icon v-bind="props" :color="note.color" elevation="0">
+                                            <v-icon :color="note.color === '#000000' ? '#FFFFFF' : '#000000'"
+                                                >mdi-format-color-text</v-icon
+                                            >
+                                        </v-btn>
+                                    </template>
+                                    <v-card max-width="400">
+                                        <color-picker
+                                            v-model="note.color"
+                                            :colors="fontColors"
+                                            label="Font Color"
+                                        ></color-picker
+                                    ></v-card>
+                                </v-menu>
 
-                                <v-divider vertical></v-divider>
-
-                                <color-picker
-                                    v-model="note.bg_color"
-                                    :colors="backgroundColors"
-                                    label="Note Color"
-                                ></color-picker>
+                                <v-menu v-model="noteColorMenu">
+                                    <template v-slot:activator="{ props }">
+                                        <v-btn
+                                            class="colorBtns"
+                                            icon
+                                            v-bind="props"
+                                            :color="note.bg_color"
+                                            elevation="0"
+                                        >
+                                            <v-icon>mdi-format-color-fill</v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <v-card max-width="400">
+                                        <color-picker
+                                            v-model="note.bg_color"
+                                            :colors="backgroundColors"
+                                            label="Note Color"
+                                        ></color-picker></v-card
+                                ></v-menu>
                             </div>
-
-                            <v-divider></v-divider>
 
                             <v-text-field
                                 class="font-weight-bold"
@@ -143,6 +164,8 @@
             return {
                 dialog: false,
                 menu: false,
+                fontColorMenu: false,
+                noteColorMenu: false,
                 showField: false,
                 initTitle: "",
                 initText: "",
@@ -294,6 +317,11 @@
 
     .button:hover {
         background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .colorBtns {
+        margin: 0 5px;
+        border: 1px black solid;
     }
 
     @media screen and (max-width: 480px) {
