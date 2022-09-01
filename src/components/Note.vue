@@ -3,7 +3,7 @@
         <v-menu v-model="menu" :close-on-content-click="false">
             <template v-slot:activator="{ props }">
                 <p class="category arima" :style="{ color: note.color }" v-bind="props">
-                    {{ note.category }} <span v-show="note.category === ''" class="font-weight-bold">Category</span
+                    {{ note.category }} <span v-show="note.category === ''" class="font-weight-bold">Tag</span
                     ><v-icon>mdi-menu-down</v-icon>
                 </p>
             </template>
@@ -19,7 +19,7 @@
                             v-else
                             autofocus
                             density="compact"
-                            placeholder="Add Category"
+                            placeholder="Add Tag"
                             hide-details
                             variant="outlined"
                             @keyup.enter="addCategory"

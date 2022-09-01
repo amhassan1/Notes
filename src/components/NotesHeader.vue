@@ -19,7 +19,7 @@
                     variant="underlined"
                     :items="categories"
                     :style="{ width: '100%' }"
-                    label="Category"
+                    label="Tag"
                     hide-details
                 >
                 </v-select>
