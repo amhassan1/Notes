@@ -2,7 +2,7 @@
     <div class="note" ref="noteDiv" :style="{ backgroundColor: note.bg_color }">
         <v-menu v-model="menu" :close-on-content-click="false">
             <template v-slot:activator="{ props }">
-                <p class="category arima" v-bind="props">
+                <p class="category arima" :style="{ color: note.color }" v-bind="props">
                     {{ note.category }} <span v-show="note.category === ''" class="font-weight-bold">Category</span
                     ><v-icon>mdi-menu-down</v-icon>
                 </p>
