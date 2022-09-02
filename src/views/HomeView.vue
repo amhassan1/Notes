@@ -1,7 +1,21 @@
 <template>
     <div class="home arima">
-        <h3 class="text-align">Create Notes Quickly and Easily</h3>
-        <h4 class="text-align">Go to <router-link to="/notes" class="link">My Notes</router-link></h4>
+        <h2 class="text-align">Create Notes Quickly and Easily</h2>
+        <h3 class="text-align">Go to <router-link to="/notes" class="link">My Notes</router-link></h3>
+    </div>
+
+    <div class="about arima">
+        <h3>By Abdulaziz Hassan</h3>
+        <span>Version 0.3.2</span>
+        <br />
+        <v-btn
+            icon="mdi-github"
+            size="x-large"
+            variant="plain"
+            href="https://github.com/amhassan1/Notes"
+            target="_blank"
+            :ripple="false"
+        ></v-btn>
     </div>
 </template>
 
@@ -27,9 +41,13 @@
 
     .home {
         margin: 20px 0;
-        padding: 0 20px;
         display: flex;
         flex-direction: column;
+    }
+
+    .about {
+        position: absolute;
+        bottom: 0px;
     }
 
     .home * {
