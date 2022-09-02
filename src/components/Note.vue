@@ -31,10 +31,10 @@
             </v-card>
         </v-menu>
 
-        <h3 class="edu" :style="{ color: note.color }" v-show="note.title !== ''">{{ note.title }}</h3>
+        <h3 class="arial" :style="{ color: note.color }" v-show="note.title !== ''">{{ note.title }}</h3>
 
         <v-textarea
-            class="edu"
+            class="arial"
             v-model="note.text"
             :style="{ color: note.color }"
             variant="plain"
@@ -115,7 +115,7 @@
                             ></v-text-field>
 
                             <v-textarea
-                                class="edu"
+                                class="arial"
                                 v-model="note.text"
                                 auto-grow
                                 hide-details

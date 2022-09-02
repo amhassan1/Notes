@@ -37,6 +37,10 @@
         font-family: "Edu QLD Beginner", cursive;
     }
 
+    .arial {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
     .shrikhand {
         font-family: "Shrikhand", cursive;
     }
