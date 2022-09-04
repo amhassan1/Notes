@@ -26,26 +26,6 @@
         computed: {
             ...mapGetters({ getUser: "getUser" }),
         },
-        methods: {
-            setNotes() {
-                const res = localStorage.getItem("notes");
-                let data = res ? JSON.parse(res) : [];
-                let id = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-
-                this.$store.commit("setId", id);
-                this.$store.dispatch("initNotes", data);
-            },
-            setCategories() {
-                const res = localStorage.getItem("categories");
-                let data = res ? JSON.parse(res) : [];
-
-                this.$store.commit("initCategories", data);
-            },
-        },
-        created() {
-            this.setNotes();
-            this.setCategories();
-        },
     };
 </script>
 
