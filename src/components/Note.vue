@@ -281,7 +281,7 @@
     }
 
     .category {
-        font-size: x-small;
+        font-size: small;
         margin: 0px;
         text-align: right;
         cursor: pointer;
