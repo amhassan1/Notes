@@ -20,7 +20,7 @@
                     >
                 </li>
 
-                <li><router-link :to="'/notes'">My Notes</router-link></li>
+                <li><router-link :to="'/MyNotes'">My Notes</router-link></li>
             </ul>
         </div>
         <div class="nav-right">

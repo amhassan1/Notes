@@ -15,7 +15,8 @@ const routes = [
         redirect: "/",
     },
     {
-        path: "/notes",
+        path: "/MyNotes",
+        alias: "/notes",
         name: "myNotes",
         component: MyNotes,
     },
