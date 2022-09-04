@@ -44,4 +44,19 @@
     .shrikhand {
         font-family: "Shrikhand", cursive;
     }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: inherit;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #000;
+    }
 </style>
