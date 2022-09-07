@@ -1,5 +1,9 @@
 <template>
-    <div class="note" ref="noteDiv" :style="{ backgroundColor: note.bg_color }">
+    <div
+        class="note"
+        ref="noteDiv"
+        :style="{ backgroundColor: note.bg_color, width: note.width + 'px', height: note.height + 'px' }"
+    >
         <v-menu v-model="menu" :close-on-content-click="false">
             <template v-slot:activator="{ props }">
                 <p class="category arima" :style="{ color: note.color }" v-bind="props">
@@ -173,8 +177,8 @@
                 initColor: "",
                 initBackgroundColor: "",
                 cardMaxWidth: 200,
-                dialogWidth: 600,
-                dialogHeight: 700,
+                dialogWidth: 700,
+                dialogHeight: 800,
             };
         },
         methods: {
@@ -230,8 +234,8 @@
                     this.dialogWidth = 300;
                     this.dialogHeight = 600;
                 } else {
-                    this.dialogWidth = 600;
-                    this.dialogHeight = 700;
+                    this.dialogWidth = 700;
+                    this.dialogHeight = 800;
                 }
             },
         },

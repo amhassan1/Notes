@@ -25,6 +25,17 @@
                 </v-select>
             </li>
             <li class="form-list-item">
+                <v-select
+                    v-model="noteSize"
+                    variant="underlined"
+                    :items="sizes"
+                    :style="{ width: '100%' }"
+                    label="Size"
+                    hide-details
+                >
+                </v-select>
+            </li>
+            <li class="form-list-item">
                 <color-picker v-model="note.color" :colors="fontColors" label="Font Color"></color-picker>
             </li>
             <li class="form-list-item">
@@ -51,8 +62,11 @@
                     text: "",
                     category: "",
                     color: "#000000",
-                    bg_color: "#E9FF70",
+                    bg_color: "#EEEEEE",
+                    width: "",
+                    height: "",
                 },
+                noteSize: "",
             };
         },
         methods: {
@@ -61,13 +75,23 @@
                     alert("Add Text");
                     return;
                 }
-
+                if (this.noteSize === "Large") {
+                    this.note.width = 600;
+                    this.note.height = 800;
+                } else if (this.noteSize === "Medium") {
+                    this.note.width = 400;
+                    this.note.height = 500;
+                } else {
+                    this.note.width = 300;
+                    this.note.height = 300;
+                }
                 const newNote = { id: this.id, ...this.note };
                 this.$store.dispatch("addNote", newNote);
                 this.$store.commit("setId", this.id + 1);
 
                 this.note.text = "";
                 this.note.category = "";
+                this.noteSize = "";
                 this.note.color = this.fontColors[0];
                 this.note.bg_color = this.backgroundColors[0];
             },
@@ -76,6 +100,7 @@
             ...mapGetters({
                 user: "getUser",
                 categories: "getCategories",
+                sizes: "getNoteSizes",
                 fontColors: "getNoteFontColors",
                 backgroundColors: "getNoteBackgroundColors",
                 id: "getId",

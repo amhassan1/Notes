@@ -12,6 +12,7 @@ export default createStore({
             firstName: "",
             lastName: "",
         },
+        noteSizes: ["Small", "Medium", "Large"],
         noteFontColors: ["#000000", "#FF0000", "#00FF00", "#0000FF", "#663611", "#140585", "#FFFFFF", "#00FFFF"],
         noteBackgroundColors: [
             "#EEEEEE",
@@ -44,6 +45,9 @@ export default createStore({
         },
         getUser(state) {
             return state.user;
+        },
+        getNoteSizes(state) {
+            return state.noteSizes;
         },
         getNoteFontColors(state) {
             return state.noteFontColors;
