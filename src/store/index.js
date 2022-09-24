@@ -12,7 +12,7 @@ export default createStore({
             firstName: "",
             lastName: "",
         },
-        noteSizes: ["Small", "Medium", "Large"],
+        noteSizes: { Small: [300, 300], Medium: [400, 500], Large: [600, 800] },
         noteFontColors: ["#000000", "#FF0000", "#00FF00", "#0000FF", "#663611", "#140585", "#FFFFFF", "#00FFFF"],
         noteBackgroundColors: [
             "#EEEEEE",

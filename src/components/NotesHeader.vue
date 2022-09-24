@@ -28,7 +28,7 @@
                 <v-select
                     v-model="noteSize"
                     variant="underlined"
-                    :items="sizes"
+                    :items="Object.keys(sizes)"
                     :style="{ width: '100%' }"
                     label="Size"
                     hide-details
@@ -75,16 +75,10 @@
                     alert("Add Text");
                     return;
                 }
-                if (this.noteSize === "Large") {
-                    this.note.width = 600;
-                    this.note.height = 800;
-                } else if (this.noteSize === "Medium") {
-                    this.note.width = 400;
-                    this.note.height = 500;
-                } else {
-                    this.note.width = 300;
-                    this.note.height = 300;
-                }
+
+                this.note.width = this.sizes[this.noteSize][0];
+                this.note.height = this.sizes[this.noteSize][1];
+
                 const newNote = { id: this.id, ...this.note };
                 this.$store.dispatch("addNote", newNote);
                 this.$store.commit("setId", this.id + 1);
@@ -98,7 +92,6 @@
         },
         computed: {
             ...mapGetters({
-                user: "getUser",
                 categories: "getCategories",
                 sizes: "getNoteSizes",
                 fontColors: "getNoteFontColors",
