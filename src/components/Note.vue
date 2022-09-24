@@ -2,7 +2,7 @@
     <div
         class="note"
         ref="noteDiv"
-        :style="{ backgroundColor: note.bg_color, width: note.width + 'px', height: note.height + 'px' }"
+        :style="{ backgroundColor: note.bg_color, width: noteWidth + 'px', height: noteHeight + 'px' }"
     >
         <v-menu v-model="menu" :close-on-content-click="false">
             <template v-slot:activator="{ props }">
@@ -45,6 +45,7 @@
             bg-color="inherit"
             hide-details
             readonly
+            auto-grow
             no-resize
         ></v-textarea>
 
@@ -107,6 +108,15 @@
                                             label="Note Color"
                                         ></color-picker></v-card
                                 ></v-menu>
+                                <v-select
+                                    v-model="note.size"
+                                    variant="underlined"
+                                    :items="Object.keys(sizes)"
+                                    :style="{ width: '50%' }"
+                                    label="Size"
+                                    hide-details
+                                >
+                                </v-select>
                             </div>
 
                             <v-text-field
@@ -179,6 +189,8 @@
                 cardMaxWidth: 200,
                 dialogWidth: 700,
                 dialogHeight: 800,
+                noteWidth: 300,
+                noteHeight: 300,
             };
         },
         methods: {
@@ -206,12 +218,15 @@
                         category: this.note.category,
                         color: this.note.color,
                         bg_color: this.note.bg_color,
+                        size: this.note.size,
                     };
                     this.initTitle = this.note.title;
                     this.initText = this.note.text;
                     this.initCategory = this.note.category;
                     this.initColor = this.note.color;
                     this.initBackgroundColor = this.note.bg_color;
+                    this.noteWidth = this.sizes[this.note.size][0];
+                    this.noteHeight = this.sizes[this.note.size][1];
 
                     if (updtNote.text === "") {
                         this.$store.dispatch("deleteNote", this.note.id);
@@ -243,6 +258,7 @@
             ...mapGetters({
                 user: "getUser",
                 categories: "getCategories",
+                sizes: "getNoteSizes",
                 fontColors: "getNoteFontColors",
                 backgroundColors: "getNoteBackgroundColors",
             }),
@@ -260,6 +276,10 @@
             this.initCategory = this.note.category;
             this.initColor = this.note.color;
             this.initBackgroundColor = this.note.bg_color;
+            if (this.note.size !== undefined) {
+                this.noteWidth = this.sizes[this.note.size][0];
+                this.noteHeight = this.sizes[this.note.size][1];
+            }
             this.media();
         },
     };
@@ -278,6 +298,7 @@
         padding: 20px;
         margin: 10px;
         transition: background-color 200ms ease;
+        overflow: auto;
     }
 
     .colors {

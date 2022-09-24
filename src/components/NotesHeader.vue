@@ -26,7 +26,7 @@
             </li>
             <li class="form-list-item">
                 <v-select
-                    v-model="noteSize"
+                    v-model="note.size"
                     variant="underlined"
                     :items="Object.keys(sizes)"
                     :style="{ width: '100%' }"
@@ -63,10 +63,8 @@
                     category: "",
                     color: "#000000",
                     bg_color: "#EEEEEE",
-                    width: "",
-                    height: "",
+                    size: "",
                 },
-                noteSize: "",
             };
         },
         methods: {
@@ -76,16 +74,12 @@
                     return;
                 }
 
-                this.note.width = this.sizes[this.noteSize][0];
-                this.note.height = this.sizes[this.noteSize][1];
-
                 const newNote = { id: this.id, ...this.note };
                 this.$store.dispatch("addNote", newNote);
                 this.$store.commit("setId", this.id + 1);
 
                 this.note.text = "";
                 this.note.category = "";
-                this.noteSize = "";
                 this.note.color = this.fontColors[0];
                 this.note.bg_color = this.backgroundColors[0];
             },
