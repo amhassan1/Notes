@@ -25,6 +25,17 @@
                 </v-select>
             </li>
             <li class="form-list-item">
+                <v-select
+                    v-model="note.size"
+                    variant="underlined"
+                    :items="Object.keys(sizes)"
+                    :style="{ width: '100%' }"
+                    label="Size"
+                    hide-details
+                >
+                </v-select>
+            </li>
+            <li class="form-list-item">
                 <color-picker v-model="note.color" :colors="fontColors" label="Font Color"></color-picker>
             </li>
             <li class="form-list-item">
@@ -51,7 +62,8 @@
                     text: "",
                     category: "",
                     color: "#000000",
-                    bg_color: "#E9FF70",
+                    bg_color: "#EEEEEE",
+                    size: "",
                 },
             };
         },
@@ -74,8 +86,8 @@
         },
         computed: {
             ...mapGetters({
-                user: "getUser",
                 categories: "getCategories",
+                sizes: "getNoteSizes",
                 fontColors: "getNoteFontColors",
                 backgroundColors: "getNoteBackgroundColors",
                 id: "getId",
