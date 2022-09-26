@@ -24,6 +24,7 @@
                     category: this.category.length > 0 ? this.category[0] : "",
                     color: "#000000",
                     bg_color: "#EEEEEE",
+                    size: "Small",
                 };
                 this.$store.dispatch("addNote", newNote);
                 this.$store.commit("setId", this.id + 1);
