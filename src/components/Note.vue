@@ -108,15 +108,17 @@
                                             label="Note Color"
                                         ></color-picker></v-card
                                 ></v-menu>
-                                <v-select
-                                    v-model="note.size"
-                                    variant="underlined"
-                                    :items="Object.keys(sizes)"
-                                    :style="{ width: '50%' }"
-                                    label="Size"
-                                    hide-details
-                                >
-                                </v-select>
+                                <div :style="{ width: 100 + '%', paddingLeft: 5 + '%', paddingRight: 5 + '%' }">
+                                    <v-select
+                                        v-model="note.size"
+                                        variant="underlined"
+                                        :items="Object.keys(sizes)"
+                                        :style="{ width: '100%' }"
+                                        label="Size"
+                                        hide-details
+                                    >
+                                    </v-select>
+                                </div>
                             </div>
 
                             <v-text-field
@@ -345,7 +347,7 @@
     }
 
     .colorBtns {
-        margin: 0 5px;
+        margin: 0 10px;
         border: 1px black solid;
     }
 
