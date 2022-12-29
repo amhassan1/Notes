@@ -1,6 +1,18 @@
-# notes
+# Notes
+
+## Description
+
+Notes is a note-taking Single Page Application developed in [Vue 3](https://github.com/vuejs/docs)
+
+-   Create, update, and delete notes.
+-   Change note color, font color, note size, and add tag to notes.
+-   All notes are stored on the browser local storage.
 
 ## Project setup
+
+**Requires [Node.js](https://nodejs.org/en/)**
+
+install dependencies
 
 ```
 npm install
@@ -16,12 +28,6 @@ npm run serve
 
 ```
 npm run build
-```
-
-### Build And Deploy to github pages
-
-```
-npm run deploy
 ```
 
 ### Customize configuration
