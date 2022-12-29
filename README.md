@@ -24,13 +24,15 @@ npm install
 
 ### Compiles and hot-reloads for development
 
-runs on localhost _defalult port :8080_
+runs on localhost (_defalult port :8080_)
 
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
+creates a dist folder for production (changes were made for it to work with GitHub Pages)
 
 ```
 npm run build
